@@ -2,6 +2,8 @@ from pico2d import *
 import game_world
 import game_framework
 import random
+import server
+
 
 class Ball:
     image = None
@@ -11,10 +13,13 @@ class Ball:
             Ball.image = load_image('ball21x21.png')
         self.x = x if x else random.randint(100, 1180)
         self.y = y if y else random.randint(100, 924)
+        self.cw = get_canvas_width()
+        self.ch = get_canvas_height()
+
 
     def draw(self):
-        self.image.draw(self.x, self.y)
-        draw_rectangle(*self.get_bb())
+        self.sx, self.sy = self.x - self.bg.window_left, self.y - self.bg.window_bottom
+        self.image.draw(self.sx, self.sy)
 
     def update(self):
         pass
@@ -29,3 +34,8 @@ class Ball:
                 pass
             case 'zombie:ball':
                 other.ball = self
+
+    def set_background(self, bg):
+        # fill here
+        self.bg = bg
+        pass

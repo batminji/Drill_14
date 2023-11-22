@@ -254,8 +254,8 @@ class StateMachine:
         self.boy.y += math.sin(self.boy.dir) * self.boy.speed * game_framework.frame_time
 
         # fill here
-        # self.boy.x = clamp(50.0, self.boy.x, self.boy.bg.w - 50.0)
-        # self.boy.y = clamp(50.0, self.boy.y, self.boy.bg.h - 50.0)
+        self.boy.x = clamp(50.0, self.boy.x, self.boy.bg.w - 50.0)
+        self.boy.y = clamp(50.0, self.boy.y, self.boy.bg.h - 50.0)
 
     def handle_event(self, e):
         for check_event, next_state in self.transitions[self.cur_state].items():
@@ -293,10 +293,13 @@ class Boy:
 
     def draw(self):
         # fill here
-        # sx, sy = self.x - self.bg.window_left, self.y - self.bg.window_bottom
-        sx, sy = self.bg.cw // 2, self.bg.ch // 2
+        sx, sy = self.x - self.bg.window_left, self.y - self.bg.window_bottom
+
+        # sx, sy = self.bg.cw // 2, self.bg.ch // 2
+
         self.image.clip_draw(int(self.frame) * 100, self.action * 100, 100, 100, sx, sy)
-        self.font.draw(sx - 100, sy + 60, f'{self.x:5.5}, {self.y:5.5}', (255, 255, 0))
+
+        # self.font.draw(sx - 100, sy + 60, f'{self.x:5.5}, {self.y:5.5}', (255, 255, 0))
         pass
 
     def get_bb(self):
