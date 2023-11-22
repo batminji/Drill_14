@@ -10,8 +10,9 @@ import server
 from boy import Boy
 
 # fill here
-from background import FixedBackground as Background
-
+# from background import FixedBackground as Background
+# from background import TileBackground as Background
+from background import InfiniteBackground as Background
 
 
 def handle_events():
@@ -33,6 +34,7 @@ def init():
 
     server.boy = Boy()
     game_world.add_object(server.boy, 1)
+
     server.boy.set_background(server.background)
     pass
 
